@@ -17,7 +17,16 @@
 			</view>
 		</view>
 		<!-- 吸顶 -->
+		<u-sticky :offset-top="offsetTop">
+			<view class="stickyView">
+				<label>全部</label>
+				<label>直播</label>
+				<label>便宜好货</label>
+				<label>买家秀</label>
+			</view>
+		</u-sticky>
 		<!-- 瀑布流 -->
+		<view style="height: 1800rpx;background-color: red;"></view>
 	</view>
 </template>
 
@@ -31,6 +40,13 @@
 			return {
 				swiperImgs: swiperImgs,
 				chanels: chanelList
+			}
+		},
+		
+		props: {
+			offsetTop: {
+				type: Number,
+				default: 0
 			}
 		},
 		
@@ -88,5 +104,19 @@
 	    margin: 0px 165px;
 	    border-radius: 10px;
 	    background: #ededed;
+	}
+	
+	.stickyView {
+		display: flex;
+		flex-direction: row;
+		z-index: 10;
+		background-color: #F5F5F5;
+		label {
+			width: 25%;
+			height: 80rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 </style>
