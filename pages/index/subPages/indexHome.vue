@@ -18,12 +18,10 @@
 		</view>
 		<!-- 吸顶 -->
 		<u-sticky :offset-top="offsetTop">
-			<view class="stickyView">
-				<label v-for="v in stickList" :key="v">{{v}}</label>
-			</view>
+			<u-tabs ref="stickyTab" @change="tabChange" :current="currentIndex" :list="tabs" active-color="#df663a" :is-scroll="false" ></u-tabs>
 		</u-sticky>
 		<!-- 瀑布流 -->
-		<view>
+		<view style="padding:0 10rpx;background-color: #F5F5F5;">
 			<u-waterfall v-model="flowList" ref="uWaterfall">
 				<template v-slot:left="{ leftList }">
 					<view style="border-radius: 8px;margin: 5px;background-color: #ffffff;padding: 8px;position: relative;"
@@ -41,21 +39,13 @@
 						<view style="font-size: 30rpx;margin-top: 5px;">{{ item.title }}</view>
 						<view style="font-size: 30rpx;margin-top: 5px;">{{ item.price }}元</view>
 						<view style="display: flex;margin-top: 5px;">
-							<view style="color: #ffffff;display: flex;align-items: center;padding: 4rpx 14rpx;border-radius: 50rpx;
-														font-size: 20rpx;
-														line-height: 1;">自营</view>
-							<view style="margin-left: 10px;
-		border-radius: 50rpx;
-		line-height: 1;
-		padding: 4rpx 14rpx;
-		display: flex;
-		align-items: center;
-		border-radius: 50rpx;
-		font-size: 20rpx;">放心购</view>
+							<view style="display: flex;align-items: center;padding: 4rpx 14rpx;border-radius: 50rpx;
+														font-size: 20rpx;line-height: 1;border: 1px solid #df663a;">自营</view>
+							<view style="margin-left: 10px;border-radius: 50rpx;line-height: 1;padding: 4rpx 14rpx;
+														display: flex;align-items: center;border-radius: 50rpx;border: 1px solid #df663a;
+														font-size: 20rpx;">放心购</view>
 						</view>
-						<view style="font-size: 22rpx;
-		color: $u-tips-color;
-		margin-top: 5px;">{{ item.shop }}</view>
+						<view style="font-size: 22rpx;margin-top: 5px;">{{ item.shop }}</view>
 					</view>
 				</template>
 				<template v-slot:right="{ rightList }">
@@ -73,21 +63,13 @@
 						<view style="font-size: 30rpx;margin-top: 5px;">{{ item.title }}</view>
 						<view style="font-size: 30rpx;margin-top: 5px;">{{ item.price }}元</view>
 						<view style="display: flex;margin-top: 5px;">
-							<view style="color: #ffffff;display: flex;align-items: center;padding: 4rpx 14rpx;border-radius: 50rpx;
-														font-size: 20rpx;
-														line-height: 1;">自营</view>
-							<view style="margin-left: 10px;
-		border-radius: 50rpx;
-		line-height: 1;
-		padding: 4rpx 14rpx;
-		display: flex;
-		align-items: center;
-		border-radius: 50rpx;
-		font-size: 20rpx;">放心购</view>
+							<view style="display: flex;align-items: center;padding: 4rpx 14rpx;border-radius: 50rpx;
+														font-size: 20rpx;line-height: 1;border: 1px solid #df663a;">自营</view>
+							<view style="margin-left: 10px;border: 1px solid #df663a;border-radius: 50rpx;line-height: 1;
+							padding: 4rpx 14rpx;display: flex;align-items: center;border-radius: 50rpx;
+							font-size: 20rpx;">放心购</view>
 						</view>
-						<view style="font-size: 22rpx;
-		color: $u-tips-color;
-		margin-top: 5px;">{{ item.shop }}</view>
+						<view style="font-size: 22rpx;margin-top: 5px;">{{ item.shop }}</view>
 						<!-- 微信小程序无效，因为它不支持在template中引入组件 -->
 						<!-- <u-icon name="close-circle-fill" color="#fa3534" size="34" class="u-close"
 						 @click="remove(item.id)"></u-icon> -->
@@ -105,18 +87,15 @@
 		swiperImgs,
 		chanelList
 	} from '../../../data/pageData/pageData.js'
-	import wtFlow from '../../../components/wtFlow/wtFlow.vue'
 
 	export default {
-
-		components: {
-			wtFlow
-		},
 
 		data() {
 			return {
 				swiperImgs: swiperImgs,
 				chanels: chanelList,
+				currentIndex: 0,
+				tabs: [{name: '全部'},{name: '直播'},{name: '便宜好货'},{name: '买家秀'}],
 				stickList: ['全部', '直播', '便宜好货', '买家秀'],
 				loadStatus: 'loadmore',
 				flowList: [],
@@ -219,11 +198,11 @@
 					this.flowList.push(item);
 				}
 			},
-			remove(id) {
-				this.$refs.uWaterfall.remove(id);
-			},
-			clear() {
-				this.$refs.uWaterfall.clear();
+			// remove(id) {
+			// 	this.$refs.uWaterfall.remove(id);
+			// },
+			tabChange(index) {
+				this.currentIndex = index
 			}
 		}
 	}
@@ -279,65 +258,4 @@
 		border-radius: 10px;
 		background: #ededed;
 	}
-
-	.stickyView {
-		display: flex;
-		flex-direction: row;
-		z-index: 10;
-		background-color: #F5F5F5;
-
-		label {
-			width: 25%;
-			height: 80rpx;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-	}
-
-
-	// .demo-warter {
-	// 	border-radius: 8px;
-	// 	margin: 5px;
-	// 	background-color: #ffffff;
-	// 	padding: 8px;
-	// 	position: relative;
-	// }
-
-
-	// .demo-tag-owner {
-	// 	background-color: $u-type-error;
-	// 	color: #ffffff;
-	// 	display: flex;
-	// 	align-items: center;
-	// 	padding: 4rpx 14rpx;
-	// 	border-radius: 50rpx;
-	// 	font-size: 20rpx;
-	// 	line-height: 1;
-	// }
-
-	// .demo-tag-text {
-	// 	border: 1px solid $u-type-primary;
-	// 	color: $u-type-primary;
-	// 	margin-left: 10px;
-	// 	border-radius: 50rpx;
-	// 	line-height: 1;
-	// 	padding: 4rpx 14rpx;
-	// 	display: flex;
-	// 	align-items: center;
-	// 	border-radius: 50rpx;
-	// 	font-size: 20rpx;
-	// }
-
-	// .demo-price {
-	// 	font-size: 30rpx;
-	// 	color: $u-type-error;
-	// 	margin-top: 5px;
-	// }
-
-	// .demo-shop {
-	// 	font-size: 22rpx;
-	// 	color: $u-tips-color;
-	// 	margin-top: 5px;
-	// }
 </style>
