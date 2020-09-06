@@ -29,8 +29,8 @@ uView：http://www.uviewui.com/components/intro.html
 ## 页面展示
 
 <div style="display: flex;background-color: #fff">
-  <image src="./displayImgs/1.jpeg" style="width:33%;height:600px"></image>
-  <image src="./displayImgs/2.jpeg" style="width:33%;height:600px"></image>
+  <image src="https://s1.ax1x.com/2020/09/06/we4SoT.jpg" style="width:33%;height:600px"></image>
+  <image src="https://s1.ax1x.com/2020/09/06/we4FSJ.jpg" style="width:33%;height:600px"></image>
 </div>
 
 
