@@ -6,11 +6,9 @@ Vue.use(Vuex)
 
 const state = {	
 	address: '定位中...',// 地址
-	avatar: 'https://s1.ax1x.com/2020/08/31/dXKwGT.png' ,//头像
-	userId: '', 
 	userInfo: {
 		userId: '',
-		avatar: 'https://s1.ax1x.com/2020/09/01/dv7iss.jpg' ,//头像
+		avatar: 'https://s1.ax1x.com/2020/09/06/weMwk9.png' ,//头像
 		userName: '',
 		userDesc: '',
 		userPhone: ''

@@ -36,7 +36,7 @@ export default {
 		// state.userId = ''
 		state.userInfo = {
 			userId: '',
-			avatar: 'https://s1.ax1x.com/2020/08/31/dXKwGT.png', //头像
+			avatar: 'https://s1.ax1x.com/2020/09/06/weMjts.png', //头像
 			userName: '',
 			userDesc: '',
 			userPhone: ''
@@ -62,7 +62,7 @@ export default {
 				})
 				userInfo = {
 					userId: '',
-					avatar: 'https://s1.ax1x.com/2020/08/31/dXKwGT.png', //头像
+					avatar: 'https://s1.ax1x.com/2020/09/06/weMjts.png', //头像
 					userName: '',
 					userDesc: '',
 					userPhone: ''
@@ -73,7 +73,7 @@ export default {
 		}else {
 			userInfo = {
 				userId: '',
-				avatar: 'https://s1.ax1x.com/2020/09/01/dv7iss.jpg', //头像
+				avatar: 'https://s1.ax1x.com/2020/09/06/weMjts.png', //头像
 				userName: '',
 				userDesc: '',
 				userPhone: ''

@@ -14,8 +14,7 @@
 		 :is-scroll="true" active-color="#df663a" :show-bar="false"></u-tabs>
 	</view>
 	
-
-	<index-home v-if="currentIndex == 0" :offsetTop="offsetTop"></index-home>
+	<index-home ref="indexHome" v-if="currentIndex == 0" :loadStatus="loadStatus" :offsetTop="offsetTop"></index-home>
 	</view>
 </template>
 
@@ -36,6 +35,7 @@
 				menuTop: 0,
 				menuHeight: 0,
 				menuLeft: 0,
+				loadStatus: 'loadmore',
 			}
 		},
 		
@@ -54,6 +54,16 @@
 			this.menuTop = menuButtonPosition.top
 			this.menuHeight = menuButtonPosition.height
 			this.menuLeft = menuButtonPosition.left
+		},
+		
+		// 滚动到页面底部时触发
+		onReachBottom() {
+			this.loadStatus = 'loading';
+			// 模拟数据加载
+			setTimeout(() => {
+				this.$refs['indexHome'].addRandomData();
+				this.loadStatus = 'loadmore';
+			}, 1000);
 		},
 
 		methods: {
