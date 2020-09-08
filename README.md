@@ -32,10 +32,10 @@ uView：http://www.uviewui.com/components/intro.html
 
 ## 页面展示
 
-<div style="display: flex;background-color: #fff">
-  <image src="https://s1.ax1x.com/2020/09/06/we4SoT.jpg" style="width:33%;height:600px"></image>
-  <image src="https://s1.ax1x.com/2020/09/06/we4FSJ.jpg" style="width:33%;height:600px"></image>
-</div>
+<img src="https://s1.ax1x.com/2020/09/06/we4SoT.jpg" width="365" height="619" />
+<img src="https://s1.ax1x.com/2020/09/06/we4FSJ.jpg" width="365" height="619" />
+<img src="https://s1.ax1x.com/2020/09/08/wQgtpD.jpg" width="365" height="619"/>
+
 
 
 

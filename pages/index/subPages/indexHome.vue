@@ -21,7 +21,7 @@
 			<u-tabs ref="stickyTab" @change="tabChange" :current="currentIndex" :list="tabs"
 			 active-color="#df663a" :is-scroll="false"></u-tabs>
 		</u-sticky>
-		<!-- 瀑布流 -->
+		<!-- 瀑布流，以下css写到class中无效，待改进 -->
 		<view style="padding:0 10rpx;background-color: #F5F5F5;">
 			<u-waterfall v-model="flowList" ref="uWaterfall">
 				<template v-slot:left="{ leftList }">
@@ -149,10 +149,7 @@
 			},
 
 			goToProductDetail() {
-				console.log(11111222221111)
-				// uni.navigateTo({
-				// 	url: '../../productDetail/productDetail'
-				// })
+				// 直接在当前页无法跳转
 				this.$emit('goToProductDetail')
 			}
 		}
