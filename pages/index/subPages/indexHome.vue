@@ -26,7 +26,7 @@
 			<u-waterfall v-model="flowList" ref="uWaterfall">
 				<template v-slot:left="{ leftList }">
 					<view style="border-radius: 8px;margin: 5px;background-color: #ffffff;padding: 8px;position: relative;"
-					 v-for="(item, index) in leftList" :key="index">
+					 v-for="(item, index) in leftList" :key="index" @click="goToProductDetail">
 						<!-- 警告：微信小程序不支持嵌入lazyload组件，请自行如下使用image标签 -->
 						<!-- #ifndef MP-WEIXIN -->
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image"
@@ -51,7 +51,7 @@
 				</template>
 				<template v-slot:right="{ rightList }">
 					<view style="border-radius: 8px;margin: 5px;background-color: #ffffff;padding: 8px;position: relative;"
-					 v-for="(item, index) in rightList" :key="index">
+					 v-for="(item, index) in rightList" :key="index" @click="goToProductDetail">
 						<!-- #ifndef MP-WEIXIN -->
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image"
 						 :index="index"></u-lazy-load>
@@ -148,7 +148,13 @@
 				this.currentIndex = index
 			},
 
-
+			goToProductDetail() {
+				console.log(11111222221111)
+				// uni.navigateTo({
+				// 	url: '../../productDetail/productDetail'
+				// })
+				this.$emit('goToProductDetail')
+			}
 		}
 	}
 </script>

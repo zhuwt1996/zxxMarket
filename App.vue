@@ -25,4 +25,10 @@
 	.commonPage {
 		padding: 0 30rpx;
 	}
+	.zxxPage {
+		background-color: #F5F5F5;
+		width: 100%;
+		min-height: 100%;
+		position: absolute;
+	}
 </style>

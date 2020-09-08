@@ -24,6 +24,10 @@ uView：http://www.uviewui.com/components/intro.html
 - [ ] 登录
 - [ ] 收货地址
 - [ ] 我的订单
+- [ ] 优惠券
+- [ ] 足迹
+- [ ] 物流状态
+- [ ] 垂直分类
 - [ ] ...（有时间慢慢搞）
 
 ## 页面展示

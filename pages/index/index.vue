@@ -14,7 +14,7 @@
 		 :is-scroll="true" active-color="#df663a" :show-bar="false"></u-tabs>
 	</view>
 	
-	<index-home ref="indexHome" v-if="currentIndex == 0" :loadStatus="loadStatus" :offsetTop="offsetTop"></index-home>
+	<index-home ref="indexHome" v-if="currentIndex == 0" :loadStatus="loadStatus" :offsetTop="offsetTop" @goToProductDetail="goToProductDetail"></index-home>
 	</view>
 </template>
 
@@ -69,6 +69,11 @@
 		methods: {
 			tabChange(index) {
 				this.currentIndex = index
+			},
+			goToProductDetail() {
+				uni.navigateTo({
+					url: '../productDetail/productDetail'
+				})
 			}
 		}
 	}
