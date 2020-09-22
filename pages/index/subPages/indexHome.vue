@@ -26,7 +26,7 @@
 			<u-waterfall v-model="flowList" ref="uWaterfall">
 				<template v-slot:left="{ leftList }">
 					<view style="border-radius: 8px;margin: 5px;background-color: #ffffff;padding: 8px;position: relative;"
-					 v-for="(item, index) in leftList" :key="index" @click="goToProductDetail">
+					 v-for="(item, index) in leftList" :key="index" @click="goToProductDetail(item)">
 						<!-- 警告：微信小程序不支持嵌入lazyload组件，请自行如下使用image标签 -->
 						<!-- #ifndef MP-WEIXIN -->
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image"
@@ -51,7 +51,7 @@
 				</template>
 				<template v-slot:right="{ rightList }">
 					<view style="border-radius: 8px;margin: 5px;background-color: #ffffff;padding: 8px;position: relative;"
-					 v-for="(item, index) in rightList" :key="index" @click="goToProductDetail">
+					 v-for="(item, index) in rightList" :key="index" @click="goToProductDetail(item)">
 						<!-- #ifndef MP-WEIXIN -->
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image"
 						 :index="index"></u-lazy-load>
@@ -137,9 +137,10 @@
 					let index = this.$u.random(0, this.list.length - 1);
 					// 先转成字符串再转成对象，避免数组对象引用导致数据混乱
 					let item = JSON.parse(JSON.stringify(this.list[index]));
-					item.id = this.$u.guid();
+					// item.id = this.$u.guid();
 					this.flowList.push(item);
 				}
+				console.log(JSON.parse(JSON.stringify(this.flowList)))
 			},
 			// remove(id) {
 			// 	this.$refs.uWaterfall.remove(id);
@@ -148,9 +149,9 @@
 				this.currentIndex = index
 			},
 
-			goToProductDetail() {
+			goToProductDetail(product) {
 				// 直接在当前页无法跳转
-				this.$emit('goToProductDetail')
+				this.$emit('goToProductDetail',encodeURIComponent(JSON.stringify(product)))
 			}
 		}
 	}

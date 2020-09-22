@@ -3,7 +3,8 @@ import {
 	SET_USERINFO,
 	USER_LOGIN,
 	USER_LOGOUT,
-	INIT_LOGINSTATUS
+	INIT_LOGINSTATUS,
+	ADD_CART
 } from './mutation-type.js'
 import cacheTool from '../utils/cacheTool.js'
 
@@ -17,7 +18,6 @@ export default {
 			...state.userInfo,
 			...userInfo
 		}
-		console.log('state.userInfo',state.userInfo)
 	},
 	/** 
 	 * 登录逻辑：
@@ -46,13 +46,9 @@ export default {
 	},
 
 	[ INIT_LOGINSTATUS ]( state ) {
-		
 		let userInfo = cacheTool.getItem( 'userInfo' )
-		console.log('userInfo',userInfo)
-		// let userId = userInfo.userId
 		if ( userInfo && userInfo.userId.length > 0 ) {
 			// 判断登录状态是否已经失效
-			// let userId = cacheTool.getItem('userId')
 			let loginTime = cacheTool.getItem( 'loginTime' )
 			// 设置3分钟失效
 			if ( ( new Date().getTime() - loginTime ) / 1000 / 60 > 3 ) {
@@ -80,7 +76,35 @@ export default {
 			}
 		}
 		state.userInfo = userInfo
-		// state.userId = userId
+	},
+	
+	[ADD_CART](state,product){
+		// 检查购物车有无该店铺的商品
+		let shopIndex = state.cartList.findIndex(cart => cart.shopId == product.shopId)
+		if (shopIndex >= 0) {
+			// 检查购物车有无同种商品
+			let productIndex = state.cartList[shopIndex].productList.findIndex(cartProduct => cartProduct.productId == product.productId)
+			if (productIndex >= 0) {
+				// 存在同种商品，该商品数量加上product.num
+				state.cartList[shopIndex].productList[productIndex] = {
+					...state.cartList[shopIndex].productList[productIndex],
+					num: state.cartList[shopIndex].productList[productIndex].num + product.num
+				}
+			}else {
+				// 不存在该种商品，在该店铺下添加该product
+				state.cartList[shopIndex].productList = [...state.cartList[shopIndex].productList,product]
+			}
+		}else {
+			// 不存在该店铺的商品，直接添加到购物车中
+			state.cartList = [...state.cartList,{
+				shopId: product.shopId,
+				shopName: product.shopName,
+				shopIcon: product.shopIcon,
+				productList: [product]
+			}]
+		}
+		console.log('state.cartList',state.cartList)
+		 
 	}
 
 }

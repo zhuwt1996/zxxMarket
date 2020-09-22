@@ -2,26 +2,26 @@
 <template>
 	<view class="zxxPage">
 		<!-- 轮播图展示 -->
-		<swiper style="height: 350rpx;" :circular="true" :indicator-dots="true"
+		<swiper style="height: 600rpx;" :circular="true" :indicator-dots="true"
 		 :autoplay="true" :interval="3000" :duration="300">
-			<swiper-item v-for="(v,k) in swiperImgs" :key="k">
-				<image class="swiperImg" :src="v.url"></image>
+			<swiper-item v-for="(v,k) in productDeatil.previewer_list" :key="k">
+				<image class="swiperImg" :src="v.src"></image>
 			</swiper-item>
 		</swiper>
 		<!-- 商品描述/价格 -->
 		<view class="productInfo">
-			<label class="price">¥432</label>
-			<label class="desc">张凯丽代言阿迪拔丝三代老年人战靴，变相不减速，急停不崴脚</label>
+			<label class="price">¥{{productDeatil.price}}</label>
+			<label class="desc">{{productDeatil.title}}</label>
 		</view>
 		<!-- 商品类型 -->
 		<view class="productNum" @click="popProductSelector">
 			<label>请选择商品类型</label>
-			<u-icon name="arrow-right"></u-icon>
+			<label>{{activeTags.join('+')}} <u-icon name="arrow-right"></u-icon></label>
 		</view>
 		<!-- 选择商品数量 -->
 		<view class="productNum">
 			<label>请选择商品数量</label>
-			<u-number-box v-model="productNum" @change="numBoxChange" :min="1"></u-number-box>
+			<u-number-box v-model="productDeatil.num" @change="numBoxChange" :min="1"></u-number-box>
 		</view>
 		<!-- 底部购买按钮 -->
 		<view class="productDetailFooter">
@@ -41,7 +41,7 @@
 			</view>
 
 			<view class="footerBtns">
-				<button>加入购物车</button>
+				<button @click="addCart">加入购物车</button>
 				<button>立即购买</button>
 			</view>
 		</view>
@@ -56,23 +56,21 @@
 						 @click="handleTagSelect(k,option)">{{option}}</label>
 					</view>
 				</view>
-				<button>确 定</button>
+				<button @click="showPop = false">确 定</button>
 			</view>
 		</u-popup>
 	</view>
 </template>
 
 <script>
-	import {
-		swiperImgs
-	} from "../../data/pageData/pageData.js"
+	import { mapMutations } from "vuex";
 	export default {
 		data() {
 			return {
-				swiperImgs: swiperImgs,
-				productNum: 1,
+				
+				
 				showPop: false,
-				activeTags:{},
+				activeTags:[],
 				productProps: [{
 					title: '颜色',
 					options: ['粉红', '黑白', '黄蓝', '紫色', '纯黑', '纯白', '五彩斑斓的黑', '白天不懂夜的黑']
@@ -85,12 +83,21 @@
 				activeStyle: {
 					color: '#FFFFFF',
 					backgroundColor: '#fc5220'
-				}
+				},
+				productDeatil: {
+					num: 1
+				} 
 			}
 		},
 		
+		onLoad(e) {
+			this.productDeatil = JSON.parse(decodeURIComponent(e.product)) 
+			console.log('this.productDeatil',JSON.parse(JSON.stringify(this.productDeatil)))
+		},
 
 		methods: {
+			...mapMutations(["ADD_CART"]),
+			
 			numBoxChange(e) {
 				console.log('当前值为: ' + e.value)
 			},
@@ -99,6 +106,20 @@
 			},
 			handleTagSelect(tagIndex, option) {
 				this.$set(this.activeTags,tagIndex,option)
+			},
+			addCart() {
+				if (this.activeTags.length == 0) {
+					uni.showToast({
+						title: "请先选择商品类型"
+					})
+					return
+				}
+				this.productDeatil = {
+					...this.productDeatil,
+					types: this.activeTags.toString()
+				}
+				console.log('this.productDeatil======',this.productDeatil)
+				this.ADD_CART(this.productDeatil)
 			}
 		}
 	}

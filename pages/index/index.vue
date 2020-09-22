@@ -70,9 +70,9 @@
 			tabChange(index) {
 				this.currentIndex = index
 			},
-			goToProductDetail() {
+			goToProductDetail(product) {
 				uni.navigateTo({
-					url: '../productDetail/productDetail'
+					url: '../productDetail/productDetail?product=' + product
 				})
 			}
 		}

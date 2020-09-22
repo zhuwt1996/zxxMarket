@@ -12,7 +12,8 @@ const state = {
 		userName: '',
 		userDesc: '',
 		userPhone: ''
-	}
+	},
+	cartList: []
 }
 
 const getters = {
