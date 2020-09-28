@@ -46,7 +46,7 @@
 		},
 
 		onLoad() {
-			console.log(this.$u.config.v);
+			console.log('当前uView版本===' + this.$u.config.v);
 
 			this.tabs = indexTabs
 			// 获取胶囊按钮的位置

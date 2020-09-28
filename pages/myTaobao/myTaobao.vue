@@ -54,7 +54,7 @@
 			</view>
 		</view>
 		<uni-list :border="false">
-			<uni-list-item title="收货地址" rightText="未认证" thumb="../../static/mine/dz.png" thumbSize="sm" clickable link  showArrow class="listItem" />
+			<uni-list-item title="收货地址"  thumb="../../static/mine/dz.png" thumbSize="sm" clickable link to="/pages/address/address"  showArrow class="listItem" />
 			<uni-list-item title="主题切换"  thumb="../../static/mine/zt.png" thumbSize="sm" clickable link showArrow class="listItem" />
 			<uni-list-item title="清理缓存" thumb="../../static/mine/qlhc.png" thumbSize="sm" clickable link showArrow class="listItem" />
 			<uni-list-item title="关于ZxxMarket" thumb="../../static/mine/gy.png" thumbSize="sm" clickable link showArrow class="listItem" />

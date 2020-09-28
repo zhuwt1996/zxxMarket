@@ -19,8 +19,8 @@ uView：http://www.uviewui.com/components/intro.html
 ## 功能清单
 
 - [x] 首页展示
-- [ ] 商品详情
-- [ ] 购物车
+- [x] 商品详情
+- [x] 购物车
 - [ ] 登录
 - [ ] 收货地址
 - [ ] 我的订单

@@ -21,7 +21,7 @@
 		<!-- 选择商品数量 -->
 		<view class="productNum">
 			<label>请选择商品数量</label>
-			<u-number-box v-model="productDeatil.num" @change="numBoxChange" :min="1"></u-number-box>
+			<u-number-box v-model="productCount" @change="numBoxChange" :min="1"></u-number-box>
 		</view>
 		<!-- 底部购买按钮 -->
 		<view class="productDetailFooter">
@@ -35,13 +35,13 @@
 					<span>客服</span>
 				</view>
 				<view class="item">
-					<image src="../../static/productDeatil/like.png"></image>
+					<image @click="isProductLike = !isProductLike" :src="isProductLike ? '../../static/productDeatil/like_fill.png' : '../../static/productDeatil/like.png'"></image>
 					<span>收藏</span>
 				</view>
 			</view>
 
 			<view class="footerBtns">
-				<button @click="addCart">加入购物车</button>
+				<button @click="addCart" :loading="addCartBtnLoading">加入购物车</button>
 				<button>立即购买</button>
 			</view>
 		</view>
@@ -67,8 +67,6 @@
 	export default {
 		data() {
 			return {
-				
-				
 				showPop: false,
 				activeTags:[],
 				productProps: [{
@@ -84,9 +82,10 @@
 					color: '#FFFFFF',
 					backgroundColor: '#fc5220'
 				},
-				productDeatil: {
-					num: 1
-				} 
+				productDeatil: {} ,
+				addCartBtnLoading: false,
+				productCount: 1,
+				isProductLike: false
 			}
 		},
 		
@@ -101,6 +100,9 @@
 			numBoxChange(e) {
 				console.log('当前值为: ' + e.value)
 			},
+			navBack() {
+				uni.navigateBack()
+			},
 			popProductSelector() {
 				this.showPop = true
 			},
@@ -110,16 +112,25 @@
 			addCart() {
 				if (this.activeTags.length == 0) {
 					uni.showToast({
-						title: "请先选择商品类型"
+						title: "请先选择商品类型",
+						icon: "none"
 					})
 					return
 				}
-				this.productDeatil = {
-					...this.productDeatil,
-					types: this.activeTags.toString()
-				}
-				console.log('this.productDeatil======',this.productDeatil)
-				this.ADD_CART(this.productDeatil)
+				this.addCartBtnLoading = true
+				setTimeout(() => {
+					this.addCartBtnLoading = false
+					uni.showToast({
+						title: "添加成功，在购物车等亲～"
+					})
+					this.productDeatil = {
+						...this.productDeatil,
+						num: this.productCount,
+						types: this.activeTags.toString()
+					}
+					console.log('this.productDeatil======',this.productDeatil)
+					this.ADD_CART(this.productDeatil)
+				},1500)
 			}
 		}
 	}
@@ -204,6 +215,9 @@
 				color: white;
 				outline: none;
 				border-radius: 0;
+				&:after {
+					border: none;
+				}
 			}
 
 			:nth-child(1) {
@@ -217,6 +231,8 @@
 				border-top-right-radius: 15px;
 				border-bottom-right-radius: 15px;
 			}
+			
+			
 		}
 	}
 
@@ -238,6 +254,7 @@
 				flex-direction: row;
 				flex-wrap: wrap;
 				label {
+					border-radius: 12rpx;
 					margin-right: 20rpx;
 					margin-bottom: 20rpx;
 					padding: 10rpx 40rpx;

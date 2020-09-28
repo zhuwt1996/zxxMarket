@@ -1,11 +1,11 @@
 [{
 		"shopId": "abcd1234",
-		"shopName": "万水千山总是情",
-		"shopIcon": "../../static/index/channelIcons/icon1.png",
+		"shopName": "祖安键盘专卖店",
+		"shopIcon": "https://s1.ax1x.com/2020/06/15/N9cDFP.jpg",
 		"productId": "0000",
 		"price": 35,
-		"title": "北国风光，千里冰封，万里雪飘",
-		"image": "http://pic.sc.chinaz.com/Files/pic/pic9/202002/zzpic23327_s.jpg",
+		"title": "极致手感，键盘侠利器，祖安人必备",
+		"image": "https://s1.ax1x.com/2020/05/29/tm6RMD.jpg",
 		"previewer_list": [{
 				"src": "https://s1.ax1x.com/2020/05/29/tm6RMD.jpg"
 			},
@@ -22,9 +22,9 @@
 	},
 	{
 		"shopId": "abcd1234",
-		"shopName": "万水千山总是情",
-		"shopIcon": "../../static/index/channelIcons/icon1.png",
-		"productId": "0000",
+		"shopName": "祖安键盘专卖店",
+		"shopIcon": "https://s1.ax1x.com/2020/06/15/N9cDFP.jpg",
+		"productId": "0001",
 		"price": 35,
 		"title": "北国风光，千里冰封，万里雪飘",
 		"image": "http://pic.sc.chinaz.com/Files/pic/pic9/202002/zzpic23325_s.jpg",
@@ -44,9 +44,9 @@
 	},
 	{
 		"shopId": "abcd1234",
-		"shopName": "万水千山总是情",
-		"shopIcon": "../../static/index/channelIcons/icon1.png",
-		"productId": "0000",
+		"shopName": "祖安键盘专卖店",
+		"shopIcon": "https://s1.ax1x.com/2020/06/15/N9cDFP.jpg",
+		"productId": "0002",
 		"price": 35,
 		"title": "北国风光，千里冰封，万里雪飘",
 		"image": "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg",
@@ -66,9 +66,9 @@
 	},
 	{
 		"shopId": "abcd1234",
-		"shopName": "万水千山总是情",
+		"shopName": "祖安键盘专卖店",
 		"shopIcon": "../../static/index/channelIcons/icon1.png",
-		"productId": "0000",
+		"productId": "0003",
 		"price": 35,
 		"title": "北国风光，千里冰封，万里雪飘",
 		"image": "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/zzpic23369_s.jpg",
@@ -87,10 +87,10 @@
 		]
 	},
 	{
-		"shopId": "abcd1234",
-		"shopName": "万水千山总是情",
+		"shopId": "abcd1235",
+		"shopName": "祖安键盘专卖店",
 		"shopIcon": "../../static/index/channelIcons/icon1.png",
-		"productId": "0000",
+		"productId": "0004",
 		"price": 35,
 		"title": "北国风光，千里冰封，万里雪飘",
 		"image": "http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2130_s.jpg",

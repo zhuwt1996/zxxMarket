@@ -3,6 +3,12 @@
 		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	{
+		"path": "pages/address/address",
+		"style": {
+			"navigationBarTitleText": "选择地址"
+		}
+	},
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -38,7 +44,19 @@
 			"style": {
 				"navigationBarTitleText": "商品详情"
 			}
+		},
+		{
+			"path": "pages/address/subPages/editAddress",
+			"style": {
+				"navigationBarTitleText": "编辑地址"
+			}
 		}
+		// {
+		// 	"path": "pages/address/address",
+		// 	"style": {
+		// 		"navigationBarTitleText": "选择地址"
+		// 	}
+		// }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
