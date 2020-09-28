@@ -1,5 +1,7 @@
 import {
 	ADD_RECIVEADDRESS,
+	EDIT_RECIVEADDRESS,
+	REMOVE_RECIVEADDRESS,
 	SET_USERINFO,
 	USER_LOGIN,
 	USER_LOGOUT,
@@ -7,6 +9,7 @@ import {
 	ADD_CART
 } from './mutation-type.js'
 import cacheTool from '../utils/cacheTool.js'
+import Vue from 'vue'
 
 export default {
 	[ ADD_RECIVEADDRESS ]( state, addr ) {
@@ -16,11 +19,34 @@ export default {
 			if(defaultAddrIndex != -1) {
 				state.reciveAddrList[defaultAddrIndex] = {
 					...state.reciveAddrList[defaultAddrIndex],
-					isDefault: false
+					isDefault: false,
+					show: false
 				}
 			}
 		}
 		state.reciveAddrList = [...state.reciveAddrList,addr]
+	},
+	
+	[EDIT_RECIVEADDRESS](state,obj) {
+		// 判断新增的地址是不是默认的，如果是需要将其他的地址设为非默认
+		let addr = JSON.parse(JSON.stringify(obj.addr))
+		let editIndex = Number(obj.index)
+		if (addr.isDefault){
+			let defaultAddrIndex = state.reciveAddrList.findIndex(reciveAddr => reciveAddr.isDefault)
+			if(defaultAddrIndex != -1) {
+				state.reciveAddrList[defaultAddrIndex] = {
+					...state.reciveAddrList[defaultAddrIndex],
+					isDefault: false,
+					show: false
+				}
+			}
+		}
+		let tempList = JSON.parse(JSON.stringify(state.reciveAddrList))
+		tempList[editIndex] = addr
+		state.reciveAddrList = tempList
+	},
+	[REMOVE_RECIVEADDRESS](state,removeIndex) {
+		state.reciveAddrList.splice(removeIndex, 1)
 	},
 	[ SET_USERINFO ]( state, userInfo ) {
 		console.log('SET_USERINFO',userInfo)

@@ -1,5 +1,9 @@
 // 添加收货地址
 export const ADD_RECIVEADDRESS = 'ADD_RECIVEADDRESS'
+// 编辑收货地址
+export const EDIT_RECIVEADDRESS = 'EDIT_RECIVEADDRESS'
+// 删除收货地址
+export const REMOVE_RECIVEADDRESS = 'REMOVE_RECIVEADDRESS'
 // 设置用户信息
 export const SET_USERINFO = 'SET_USERINFO'
 // 登录
