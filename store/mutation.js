@@ -1,5 +1,5 @@
 import {
-	SET_ADDRESS,
+	ADD_RECIVEADDRESS,
 	SET_USERINFO,
 	USER_LOGIN,
 	USER_LOGOUT,
@@ -9,8 +9,18 @@ import {
 import cacheTool from '../utils/cacheTool.js'
 
 export default {
-	[ SET_ADDRESS ]( state, addr ) {
-		state.address = addr
+	[ ADD_RECIVEADDRESS ]( state, addr ) {
+		// 判断新增的地址是不是默认的，如果是需要将其他的地址设为非默认
+		if (addr.isDefault){
+			let defaultAddrIndex = state.reciveAddrList.findIndex(reciveAddr => reciveAddr.isDefault)
+			if(defaultAddrIndex != -1) {
+				state.reciveAddrList[defaultAddrIndex] = {
+					...state.reciveAddrList[defaultAddrIndex],
+					isDefault: false
+				}
+			}
+		}
+		state.reciveAddrList = [...state.reciveAddrList,addr]
 	},
 	[ SET_USERINFO ]( state, userInfo ) {
 		console.log('SET_USERINFO',userInfo)

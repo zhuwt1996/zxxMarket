@@ -1,5 +1,5 @@
-// 地址
-export const SET_ADDRESS = 'SET_ADDRESS'
+// 添加收货地址
+export const ADD_RECIVEADDRESS = 'ADD_RECIVEADDRESS'
 // 设置用户信息
 export const SET_USERINFO = 'SET_USERINFO'
 // 登录

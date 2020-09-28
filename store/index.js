@@ -5,7 +5,7 @@ import mutations from './mutation'
 Vue.use(Vuex)
 
 const state = {	
-	address: '定位中...',// 地址
+	reciveAddrList: [],
 	userInfo: {
 		userId: '',
 		avatar: 'https://s1.ax1x.com/2020/09/06/weMwk9.png' ,//头像
